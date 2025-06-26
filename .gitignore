@@ -1,0 +1,45 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test results / cache
+.pytest_cache/
+*.cover
+coverage.xml
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code / PyCharm / IDE-specific
+.vscode/
+.idea/
+
+# Virtual environment folders
+env/
+venv/
+.venv/
+
+# macOS system file
+.DS_Store
+
+# Build artifacts (optional if you use any)
+build/
+dist/
+*.egg-info/
+
+# Log files or temporary debug info
+*.log
+*.tmp
+*.swp
+
+# Files specific to autograder or CS61A infra
+ok_test/
+tests/__pycache__/
+__ok__
+__grader__/
+
+# Optional: ignore student-submitted `.ok` config
+.ok
