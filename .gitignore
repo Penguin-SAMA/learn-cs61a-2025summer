@@ -42,4 +42,7 @@ __ok__
 __grader__/
 
 # Optional: ignore student-submitted `.ok` config
-.ok
+.ok*
+proj/hog/.ok_history
+hw/hw01/.ok_history
+proj/hog/.ok_storage
