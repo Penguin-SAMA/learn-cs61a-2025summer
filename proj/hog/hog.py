@@ -71,6 +71,10 @@ def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
     assert num_rolls <= 10, "Cannot roll more than 10 dice."
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls:
+        return roll_dice(num_rolls, dice)
+    else:
+        return boar_brawl(player_score, opponent_score)
     # END PROBLEM 3
 
 
@@ -97,14 +101,25 @@ def is_prime(n):
 def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
     # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
+    cnt = 0
+    num = 1
+    while num <= n:
+        if n % num == 0:
+            cnt += 1
+        num += 1
+    return cnt
     # END PROBLEM 4
 
 
 def sus_points(score):
     """Return the new score of a player taking into account the Sus Fuss rule."""
     # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
+    if num_factors(score) == 3 or num_factors(score) == 4:
+        while True:
+            score += 1
+            if is_prime(score):
+                return score
+    return score
     # END PROBLEM 4
 
 
@@ -113,7 +128,8 @@ def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
     PLAYER_SCORE and then rolls NUM_ROLLS DICE, *including* Sus Fuss.
     """
     # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
+    score = simple_update(num_rolls, player_score, opponent_score, dice)
+    return sus_points(score)
     # END PROBLEM 4
 
 
@@ -151,7 +167,18 @@ def play(strategy0, strategy1, update, score0=0, score1=0, dice=six_sided, goal=
     """
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    while score0 < goal and score1 < goal:
+        if who == 0:
+            num_dice = strategy0(score0, score1)
+            score0 = update(num_dice, score0, score1, dice)
+        else:
+            num_dice = strategy1(score1, score0)
+            score1 = update(num_dice, score1, score0, dice)
+
+        if score0 >= goal or score1 >= goal:
+            break
+
+        who = 1 - who
     # END PROBLEM 5
     return score0, score1
 
