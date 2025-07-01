@@ -204,7 +204,10 @@ def always_roll(n):
     assert n >= 0 and n <= 10
 
     # BEGIN PROBLEM 6
-    "*** YOUR CODE HERE ***"
+    def f(a, b):
+        return n
+
+    return f
     # END PROBLEM 6
 
 
@@ -236,7 +239,18 @@ def is_always_roll(strategy, goal=GOAL):
     False
     """
     # BEGIN PROBLEM 7
-    "*** YOUR CODE HERE ***"
+    player = 0
+    while player <= goal:
+        test = strategy(player, 0)
+        opponent = 0
+        while opponent <= goal:
+            test2 = strategy(player, opponent)
+            if test != test2:
+                return False
+            opponent += 1
+        player += 1
+    return True
+
     # END PROBLEM 7
 
 
@@ -253,7 +267,13 @@ def make_averaged(original_function, times_called=1000):
     """
 
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    def averaged_function(*arg):
+        total = 0
+        for _ in range(times_called):
+            total += original_function(*arg)
+        return total / times_called
+
+    return averaged_function
     # END PROBLEM 8
 
 
@@ -266,7 +286,16 @@ def max_scoring_num_rolls(dice=six_sided, times_called=1000):
     1
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    best_num_rolls = 1
+    highest_average = 0
+    averaged_roll_dice = make_averaged(roll_dice, times_called)
+    for num_rolls in range(1, 11):
+        average = averaged_roll_dice(num_rolls, dice)
+        if average > highest_average:
+            highest_average = average
+            best_num_rolls = num_rolls
+    return best_num_rolls
+
     # END PROBLEM 9
 
 
